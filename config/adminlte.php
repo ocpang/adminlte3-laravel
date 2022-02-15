@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'Nadyne Comunica',
+    'title' => 'Laravel Admin',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Nadyne</b> Comunica',
+    'logo' => '<b>Laravel</b> Admin',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'Nadyne Comunica',
+    'logo_img_alt' => 'Laravel Admin',
 
     /*
     |--------------------------------------------------------------------------
@@ -312,16 +312,6 @@ return [
             'can'  => 'read calldata',
             'active' => ['calldata', 'calldata*', 'regex:@^calldata/[0-9]+$@'],
         ],
-        // [
-        //     'text' => 'outgoingrules',
-        //     'url'  => 'outgoingrule',
-        //     'icon' => 'fas fa-fw fa-phone-square-alt',
-        // ],
-        // [
-        //     'text' => 'cosouts',
-        //     'url'  => 'cosout',
-        //     'icon' => 'fas fa-fw fa-phone-square-alt',
-        // ],
     ],
 
     /*

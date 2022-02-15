@@ -140,8 +140,8 @@
 <script type="text/javascript">
     $(function() {
 
-        var start = moment().subtract(29, 'days');
-		var end = moment();
+        var start = 0; // moment().subtract(29, 'days');
+		var end = 0; // moment();
 
         function cb(start, end) {
             if(start > 0 && end > 0) {

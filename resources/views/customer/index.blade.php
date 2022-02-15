@@ -87,7 +87,13 @@
                                                     <tr>
                                                         <th>#</th>
                                                         <th>Name</th>
-                                                        <th>Label</th>
+                                                        <th>PIC Name</th>
+                                                        <th>Phone</th>
+                                                        <th>Email</th>
+                                                        <th>Address</th>
+                                                        <th>Sub District</th>
+                                                        <th>Districts</th>
+                                                        <th>City</th>
                                                         <th>Time Created</th>
                                                         <th>Action</th>
                                                     </tr>
@@ -138,8 +144,8 @@
 <script type="text/javascript">
     $(function() {
 
-        var start = moment().subtract(29, 'days');
-		var end = moment();
+        var start = 0; // moment().subtract(29, 'days');
+		var end = 0; // moment();
 
         function cb(start, end) {
             if(start > 0 && end > 0) {
@@ -193,14 +199,20 @@
             columns: [
                 { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                 { data: 'name', name: 'name'},
-                { data: 'label', name: 'label'},
+                { data: 'pic_name', name: 'pic_name'},
+                { data: 'phone', name: 'phone'},
+                { data: 'email', name: 'email'},
+                { data: 'address', name: 'address'},
+                { data: 'sub_district', name: 'sub_district'},
+                { data: 'districts', name: 'districts'},
+                { data: 'city', name: 'city'},
                 { data: 'created_at', name: 'created_at'},
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ],
-            order: [3, "desc"],
+            order: [9, "desc"],
             columnDefs: [
                 {
-                    targets: [0, 4],
+                    targets: [0, 10],
                     className: 'text-center'
                 },
                 

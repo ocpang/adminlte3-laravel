@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 4.6.6deb5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Apr 26, 2021 at 09:52 AM
--- Server version: 10.4.17-MariaDB
--- PHP Version: 7.4.12
+-- Host: localhost:3306
+-- Generation Time: Feb 15, 2022 at 03:03 PM
+-- Server version: 10.1.40-MariaDB-0ubuntu0.18.04.1
+-- PHP Version: 7.2.29-1+ubuntu18.04.1+deb.sury.org+1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -18,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `nadynecomunica`
+-- Database: `laravel_admin`
 --
 
 -- --------------------------------------------------------
@@ -35,10 +34,17 @@ CREATE TABLE `activity_log` (
   `subject_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `causer_type` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `causer_id` bigint(20) UNSIGNED DEFAULT NULL,
-  `properties` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `properties` text COLLATE utf8mb4_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `activity_log`
+--
+
+INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_type`, `subject_id`, `causer_type`, `causer_id`, `properties`, `created_at`, `updated_at`) VALUES
+(1, 'default', 'deleted', 'App\\Models\\Customer', '4d5c6b1c-efe9-43fa-b17d-539e311c0101', 'App\\User', 1, '[]', '2022-02-15 07:58:20', '2022-02-15 07:58:20');
 
 -- --------------------------------------------------------
 
@@ -56,10 +62,10 @@ CREATE TABLE `customers` (
   `sub_district` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `districts` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `city` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 0,
-  `user_created` int(10) UNSIGNED DEFAULT 0,
-  `user_updated` int(10) UNSIGNED DEFAULT 0,
-  `user_deleted` int(10) UNSIGNED DEFAULT 0,
+  `status` tinyint(4) DEFAULT '0',
+  `user_created` int(10) UNSIGNED DEFAULT '0',
+  `user_updated` int(10) UNSIGNED DEFAULT '0',
+  `user_deleted` int(10) UNSIGNED DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -70,8 +76,7 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `pic_name`, `phone`, `email`, `address`, `sub_district`, `districts`, `city`, `status`, `user_created`, `user_updated`, `user_deleted`, `created_at`, `updated_at`, `deleted_at`) VALUES
-('4d5c6b1c-efe9-43fa-b17d-539e311c0101', 'PT Nadyne Media Tama', 'Octavian Panggestu', '02123456789', 'admin@nadyne.com', 'Jalan Benda 92 Kemang', 'Cilandak Timur', 'Cilandak', 'Jakarta Selatan', 1, 4, 4, 0, '2021-04-23 08:45:15', '2021-04-26 03:53:57', NULL),
-('55709b73-5a2f-4766-a75f-62729013f97e', 'Honda', 'PT Astra Honda Motor Indonesia', NULL, NULL, NULL, NULL, NULL, NULL, 0, 4, 4, 4, '2021-04-23 09:01:35', '2021-04-23 09:47:35', '2021-04-23 09:47:35'),
+('4d5c6b1c-efe9-43fa-b17d-539e311c0101', 'PT Nadyne Media Tama', 'Octavian Panggestu', '02123456789', 'admin@nadyne.com', 'Jalan Benda 92 Kemang', 'Cilandak Timur', 'Cilandak', 'Jakarta Selatan', 1, 4, 4, 1, '2021-04-23 08:45:15', '2022-02-15 07:58:20', '2022-02-15 07:58:20'),
 ('75faa5ab-87bd-4f38-a3d7-0fe215f64062', 'Mitracomm Ekasarana', 'Ahmad', '021111111111', 'voice-mcm@email.com', 'Jalan Raya Jakarta', 'Cilandak Timur', 'Cilandak', 'Jakarta Selatan', 0, 4, 4, 0, '2021-04-26 03:46:20', '2021-04-26 03:49:35', NULL),
 ('af2abfaf-b8d5-4c1e-81ac-b805e4a016d5', 'PT Brahmayasa Abadi', 'Octavian Panggestu', '02123456789', 'admin@brahmayasa.com', 'Jalan Benda 92 Kemang', 'Cilandak Timur', 'Cilandak', 'Jakarta Selatan', 0, 4, 4, 0, '2021-04-23 08:59:57', '2021-04-26 03:53:46', NULL),
 ('daa3736c-0d9d-4953-8d71-20f7d008656c', 'Test INFOBIP', 'Surya', '021236125711', 'test@infobip.test', 'Jalan Sudirman', 'Sudirman Utara', 'Sudirman', 'Jakarta Pusat', 0, 4, 0, 0, '2021-04-26 03:50:15', '2021-04-26 03:50:15', NULL);
@@ -88,7 +93,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -289,15 +294,15 @@ CREATE TABLE `users` (
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `customer_id` char(36) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `role_id` int(10) UNSIGNED DEFAULT 0,
+  `role_id` int(10) UNSIGNED DEFAULT '0',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `email_token` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `status` tinyint(4) DEFAULT 1,
-  `user_created` int(10) UNSIGNED DEFAULT 0,
-  `user_updated` int(10) UNSIGNED DEFAULT 0,
-  `user_deleted` int(10) UNSIGNED DEFAULT 0,
+  `email_token` text COLLATE utf8mb4_unicode_ci,
+  `status` tinyint(4) DEFAULT '1',
+  `user_created` int(10) UNSIGNED DEFAULT '0',
+  `user_updated` int(10) UNSIGNED DEFAULT '0',
+  `user_deleted` int(10) UNSIGNED DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -315,7 +320,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `customer_id`, `role_id`, `email_ver
 (5, 'Customer Nadyne', 'octa@nadyne.com', '4d5c6b1c-efe9-43fa-b17d-539e311c0101', 2, NULL, '$2y$10$bYHUpC44B9A6kLikwB4IieSJzzGGkufsXm/SfGwA/HwKYLmhCIV9.', NULL, '42e51e0d', 1, 3, 4, 4, '2021-04-23 03:36:59', '2021-04-26 04:02:10', NULL),
 (6, 'Reseller Brahmayasa', 'octa@brahmayasa.com', NULL, 4, NULL, '$2y$10$U1vLdvTWIqMZJ7uP/os5W.1yTo0CgX6njbi/HgDqj9gy8LPj0N83i', NULL, NULL, 1, 3, 4, 0, '2021-04-23 04:33:57', '2021-04-23 02:35:46', NULL),
 (7, 'Customer Brahmayasa', 'admin@brahmayasa.com', 'af2abfaf-b8d5-4c1e-81ac-b805e4a016d5', 2, NULL, '$2y$10$ouSL37H2D2GszpASINn7AuBTH0irx1jGAnz1QmbJsJiJ0Bp8mhXde', NULL, 'bae96c00', 1, 6, 4, 0, '2021-04-23 04:34:40', '2021-04-23 07:18:48', NULL),
-(8, 'Res Mitrakom', 'admin@mitrakom.com', NULL, 4, NULL, '$2y$10$9PgrbPr5kyUO/6fuIQk3UebNr5boSz/ZFcLdtq3gjEjzdqqdnFE2m', NULL, NULL, 1, 4, 4, 0, '2021-04-23 07:08:17', '2021-04-23 07:15:56', NULL),
+(8, 'Res Laravel', 'admin@laravel.com', NULL, 4, NULL, '$2y$10$9PgrbPr5kyUO/6fuIQk3UebNr5boSz/ZFcLdtq3gjEjzdqqdnFE2m', NULL, NULL, 1, 4, 4, 0, '2021-04-23 07:08:17', '2021-04-23 07:15:56', NULL),
 (9, 'Honda', 'honda@gmail.com', '4d5c6b1c-efe9-43fa-b17d-539e311c0101', 2, NULL, '$2y$10$DNpO9665uneiKoCP04FIEehsPZ8QcJ/4TCNxseK3TZYcTf4fe/o0i', NULL, NULL, 1, 4, 0, 4, '2021-04-23 07:18:30', '2021-04-23 07:46:24', '2021-04-23 07:46:24');
 
 --
@@ -403,38 +408,32 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
 --
 -- Constraints for dumped tables
 --
@@ -457,7 +456,6 @@ ALTER TABLE `model_has_roles`
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
